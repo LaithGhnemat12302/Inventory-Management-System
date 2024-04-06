@@ -25,6 +25,10 @@ Here is the ER Diagram of my project:
 
 ![ERD](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/d211d8e2-2c49-40e5-9234-242dd91235eb)
 
+* This is the design and documentation for the Supplier resource:
+![1](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/e06f47ed-425e-48cb-92e0-787cd9e9b7b2)
+![2](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/d05e9dac-fff5-43bd-bdbb-f4a06e0f5a8f)
+
 
 
 
