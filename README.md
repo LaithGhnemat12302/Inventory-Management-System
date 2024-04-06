@@ -1,6 +1,9 @@
 # Inventory-Management-System
+
 Web Services - Assignment#1
+
 Laith Ghnemat-1200610
+
 Birzeit University
 
 The Inventory Managemant System is a comprehensive software system built around four core entities: Product, Customer, Order and Supplier as follows:
