@@ -40,7 +40,9 @@ Here is the ER Diagram of my project:
 ![6](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/8bf8a5b2-36f1-4489-bdc1-b0151c8f4ff4)
 
 
-
+* This is the design and documentation for the Customer resource:
+![7](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/5547ba8d-2974-49c1-aaaf-9ae52caad464)
+![8](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/acf5eebe-6090-46c4-be4b-32c7826f41a2)
 
 
 
