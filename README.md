@@ -35,6 +35,21 @@ Here is the ER Diagram of my project:
 ![4](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/9942d4dd-c97c-4309-b81b-b2f3bf1d4d08)
 
 
+* This is the design and documentation for the Order resource:
+![5](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/d5e75cd5-93a4-4838-8f70-58d805f0910e)
+![6](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/8bf8a5b2-36f1-4489-bdc1-b0151c8f4ff4)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
