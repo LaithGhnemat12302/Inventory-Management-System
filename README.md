@@ -27,12 +27,13 @@ Here is the ER Diagram of my project:
 
 * This is the design and documentation for the Supplier resource:
 ![1](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/32b2d9de-75a0-441e-8d23-a3c547439507)
-![2](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/e61f455a-6cbc-4b23-82d3-0739b1fe4ca1)
+![2](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/25b2ab11-9979-4e3b-aae4-05c21ea8a761)
 
 
 * This is the design and documentation for the Product resource:
-![3](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/419e0b1f-4546-4193-822b-00817e0b0d42)
-![4](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/426336f0-9dbc-4a0a-abb4-a78febf67692)
+![3](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/7bcbf907-be20-4cb1-b7a4-8312660ad245)
+![4](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/9942d4dd-c97c-4309-b81b-b2f3bf1d4d08)
+
 
 
 
