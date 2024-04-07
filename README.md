@@ -45,7 +45,8 @@ Here is the ER Diagram of my project:
 ![8](https://github.com/LaithGhnemat12302/Inventory-Management-System/assets/134155389/acf5eebe-6090-46c4-be4b-32c7826f41a2)
 
 
-
+This is the openAPI:
+![openapi](web_services/openapi3_1.yaml)
 
 
 
