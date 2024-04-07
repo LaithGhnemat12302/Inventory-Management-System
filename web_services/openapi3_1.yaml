@@ -1,0 +1,308 @@
+
+"openapi": "3.1.0"
+"info":
+  "title": "Sample API"
+  "version": "1.0"
+"servers":
+  -
+    "url": "http://api.example.com/v1"
+"paths":
+  "/products":
+    "get":
+      "summary": "List all products"
+      "responses":
+        "200":
+          "description": "An array of products"
+          "content":
+            "application/json":
+              "schema":
+                "type": "array"
+                "items":
+                  "type": "object"
+                  "required":
+                    - "product_ID"
+                    - "product_name"
+                    - "price"
+                    - "description"
+                    - "prod_date"
+                    - "exp_date"
+                    - "quantity"
+                    - "supplier_ID"
+                  "properties":
+                    "product_ID":
+                      "type": "integer"
+                    "product_name":
+                      "type": "string"
+                      "maxLength": 255
+                    "price":
+                      "type": "number"
+                      "format": "double"
+                    "description":
+                      "type": "string"
+                      "maxLength": 255
+                    "prod_date":
+                      "type": "string"
+                      "format": "date"
+                    "exp_date":
+                      "type": "string"
+                      "format": "date"
+                    "quantity":
+                      "type": "integer"
+                    "supplier_ID":
+                      "type": "integer"
+    "post":
+      "summary": "Create a new product"
+      "requestBody":
+        "required": true
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "required":
+                - "product_ID"
+                - "product_name"
+                - "price"
+                - "description"
+                - "prod_date"
+                - "exp_date"
+                - "quantity"
+                - "supplier_ID"
+              "properties":
+                "product_ID":
+                  "type": "integer"
+                "product_name":
+                  "type": "string"
+                  "maxLength": 255
+                "price":
+                  "type": "number"
+                  "format": "double"
+                "description":
+                  "type": "string"
+                  "maxLength": 255
+                "prod_date":
+                  "type": "string"
+                  "format": "date"
+                "exp_date":
+                  "type": "string"
+                  "format": "date"
+                "quantity":
+                  "type": "integer"
+                "supplier_ID":
+                  "type": "integer"
+      "responses":
+        "201":
+          "description": "The created product"
+          "content":
+            "application/json":
+              "schema":
+                "type": "object"
+                "required":
+                  - "product_ID"
+                  - "product_name"
+                  - "price"
+                  - "description"
+                  - "prod_date"
+                  - "exp_date"
+                  - "quantity"
+                  - "supplier_ID"
+                "properties":
+                  "product_ID":
+                    "type": "integer"
+                  "product_name":
+                    "type": "string"
+                    "maxLength": 255
+                  "price":
+                    "type": "number"
+                    "format": "double"
+                  "description":
+                    "type": "string"
+                    "maxLength": 255
+                  "prod_date":
+                    "type": "string"
+                    "format": "date"
+                  "exp_date":
+                    "type": "string"
+                    "format": "date"
+                  "quantity":
+                    "type": "integer"
+                  "supplier_ID":
+                    "type": "integer"
+  "/products/{productId}":
+    "get":
+      "summary": "Get a product by ID"
+      "parameters":
+        -
+          "name": "productId"
+          "in": "path"
+          "required": true
+          "schema":
+            "type": "integer"
+      "responses":
+        "200":
+          "description": "A single product"
+          "content":
+            "application/json":
+              "schema":
+                "type": "object"
+                "required":
+                  - "product_ID"
+                  - "product_name"
+                  - "price"
+                  - "description"
+                  - "prod_date"
+                  - "exp_date"
+                  - "quantity"
+                  - "supplier_ID"
+                "properties":
+                  "product_ID":
+                    "type": "integer"
+                  "product_name":
+                    "type": "string"
+                    "maxLength": 255
+                  "price":
+                    "type": "number"
+                    "format": "double"
+                  "description":
+                    "type": "string"
+                    "maxLength": 255
+                  "prod_date":
+                    "type": "string"
+                    "format": "date"
+                  "exp_date":
+                    "type": "string"
+                    "format": "date"
+                  "quantity":
+                    "type": "integer"
+                  "supplier_ID":
+                    "type": "integer"
+    "put":
+      "summary": "Update a product by ID"
+      "parameters":
+        -
+          "name": "productId"
+          "in": "path"
+          "required": true
+          "schema":
+            "type": "integer"
+      "requestBody":
+        "required": true
+        "content":
+          "application/json":
+            "schema":
+              "type": "object"
+              "required":
+                - "product_ID"
+                - "product_name"
+                - "price"
+                - "description"
+                - "prod_date"
+                - "exp_date"
+                - "quantity"
+                - "supplier_ID"
+              "properties":
+                "product_ID":
+                  "type": "integer"
+                "product_name":
+                  "type": "string"
+                  "maxLength": 255
+                "price":
+                  "type": "number"
+                  "format": "double"
+                "description":
+                  "type": "string"
+                  "maxLength": 255
+                "prod_date":
+                  "type": "string"
+                  "format": "date"
+                "exp_date":
+                  "type": "string"
+                  "format": "date"
+                "quantity":
+                  "type": "integer"
+                "supplier_ID":
+                  "type": "integer"
+      "responses":
+        "200":
+          "description": "The updated product"
+          "content":
+            "application/json":
+              "schema":
+                "type": "object"
+                "required":
+                  - "product_ID"
+                  - "product_name"
+                  - "price"
+                  - "description"
+                  - "prod_date"
+                  - "exp_date"
+                  - "quantity"
+                  - "supplier_ID"
+                "properties":
+                  "product_ID":
+                    "type": "integer"
+                  "product_name":
+                    "type": "string"
+                    "maxLength": 255
+                  "price":
+                    "type": "number"
+                    "format": "double"
+                  "description":
+                    "type": "string"
+                    "maxLength": 255
+                  "prod_date":
+                    "type": "string"
+                    "format": "date"
+                  "exp_date":
+                    "type": "string"
+                    "format": "date"
+                  "quantity":
+                    "type": "integer"
+                  "supplier_ID":
+                    "type": "integer"
+    "delete":
+      "summary": "Delete a product by ID"
+      "parameters":
+        -
+          "name": "productId"
+          "in": "path"
+          "required": true
+          "schema":
+            "type": "integer"
+      "responses":
+        "204":
+          "description": "No content"
+"components":
+  "schemas":
+    "Product":
+      "type": "object"
+      "required":
+        - "product_ID"
+        - "product_name"
+        - "price"
+        - "description"
+        - "prod_date"
+        - "exp_date"
+        - "quantity"
+        - "supplier_ID"
+      "properties":
+        "product_ID":
+          "type": "integer"
+        "product_name":
+          "type": "string"
+          "maxLength": 255
+        "price":
+          "type": "number"
+          "format": "double"
+        "description":
+          "type": "string"
+          "maxLength": 255
+        "prod_date":
+          "type": "string"
+          "format": "date"
+        "exp_date":
+          "type": "string"
+          "format": "date"
+        "quantity":
+          "type": "integer"
+        "supplier_ID":
+          "type": "integer"
