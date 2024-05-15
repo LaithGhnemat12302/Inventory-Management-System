@@ -1,8 +1,11 @@
 // This is the supplier entity that represents a table stored in the database.
 package com.example.demoo.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
+
 import java.util.List;
 // __________________________________________________________________________________________________________
 @Data
@@ -23,20 +26,25 @@ public class Supplier {
     /** Indicates that the persistence provider must assign primary keys for the entity using a database
     identity column.This means they are auto-incremented.*/
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
+    @NotNull
     @Column(name = "name", nullable = false)
     private String name;
 
+    @NotNull
     @Column(name = "address")
     private String address;
 
+    @NotNull
     @Column(name = "email", nullable = false)
     private String email;
 
+    @NotNull
     @Column(name = "phone")
     private String phone;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "supplier")
     private List<Product> products;
 }

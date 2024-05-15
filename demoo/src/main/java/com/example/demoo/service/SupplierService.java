@@ -1,9 +1,12 @@
 package com.example.demoo.service;
 
+import com.example.demoo.controller.Valid;
+import com.example.demoo.entity.Customer;
 import com.example.demoo.repository.SupplierRepository;
 import com.example.demoo.entity.Supplier;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.BindingResult;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,21 +26,13 @@ public class SupplierService implements SupplierServiceInterface{
     }
     // ______________________________________________________________________________________________________
     @Override
-    public Supplier getSupplierById(long id) {
-        Optional<Supplier> suppliers = supplierRepository.findById(id);
-        if(suppliers.isPresent())
-            return suppliers.get();
-        else
-            throw new RuntimeException("Sorry, this supplier doesn't found");
+    public Optional<Supplier> getSupplierById(int id) {
+        return supplierRepository.findById(id);
     }
     // ______________________________________________________________________________________________________
     @Override
     public void addSupplier(Supplier newSupplier) {
-        Optional<Supplier> suppliers = supplierRepository.findById(newSupplier.getId());
-        if (suppliers.isPresent())
-            throw new RuntimeException("Sorry, the supplier with this id already exists");
-        else
-            supplierRepository.save(newSupplier);
+        supplierRepository.save(newSupplier);
     }
     // ______________________________________________________________________________________________________
     @Override
@@ -57,8 +52,32 @@ public class SupplierService implements SupplierServiceInterface{
             throw new RuntimeException("Sorry, this supplier doesn't exist");
     }
     // ______________________________________________________________________________________________________
+    public void updateSupplierPartially(Supplier updatedSupplier) {
+        Optional<Supplier> existingSupplierOptional = supplierRepository.findById(updatedSupplier.getId());
+
+        if (existingSupplierOptional.isPresent()) {
+            Supplier supplier = existingSupplierOptional.get();
+
+            if (updatedSupplier.getName() != null)
+                supplier.setName(updatedSupplier.getName());
+            if (updatedSupplier.getAddress() != null)
+                supplier.setAddress(updatedSupplier.getAddress());
+            if (updatedSupplier.getEmail() != null)
+                supplier.setEmail(updatedSupplier.getEmail());
+            if (updatedSupplier.getPhone() != null)
+                supplier.setPhone(updatedSupplier.getPhone());
+            supplierRepository.save(supplier);
+        }
+        else
+            throw new RuntimeException("Sorry, this supplier doesn't exist");
+    }
+    // ______________________________________________________________________________________________________
     @Override
-    public void deleteSupplier(long id) {
-        supplierRepository.deleteById(id);
+    public void deleteSupplier(int id) {
+        Optional<Supplier> supplierOptional = supplierRepository.findById(id);
+        if (supplierOptional.isPresent())
+            supplierRepository.deleteById(id);
+        else
+            throw new ResourceNotFoundException("Supplier not found with id: " + id);
     }
 }

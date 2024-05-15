@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  contains the APIs for basic CRUD operations, the APIS for pagination, and the APIs for sorting.*/
 // __________________________________________________________________________________________________________
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 }

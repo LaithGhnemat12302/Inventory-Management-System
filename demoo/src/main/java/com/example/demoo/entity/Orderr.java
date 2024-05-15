@@ -13,25 +13,25 @@ implementations that check all non-transient fields.*/
 @Entity     // Specifies that this class is an entity and is mapped to a database table.
 
 // Allows to specify the details of the table that will be used to persist the entity in the database.
-@Table(name = "Order")
+@Table(name = "Orderr")
 @Builder
 // __________________________________________________________________________________________________________
-public class Order {
+public class Orderr {
     @Id     // Declare the primary key.
 
     /** Indicates that the persistence provider must assign primary keys for the entity using a database
     identity column.This means they are auto-incremented.*/
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
-    @Column(name = "date", nullable = false)
-    private Date date;
+    @Column(name = "order_date", nullable = false)
+    private Date order_date;
 
     @Column(name = "total_cost", nullable = false)
     private double totalCost;
 
-    @Column(name = "status", nullable = false)
-    private String status;
+    @Column(name = "order_status", nullable = false)
+    private String order_status;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)

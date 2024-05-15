@@ -1,16 +1,20 @@
 package com.example.demoo.service;
 
 import com.example.demoo.entity.Product;
+import com.example.demoo.entity.ProductDTO;
+
 import java.util.List;
 // __________________________________________________________________________________________________________
 public interface ProductServiceInterface {
-    List<Product> getAllProducts();
+    List<ProductDTO> getAllProducts();
 
-    Product getProductById(long id);
+    ProductDTO getProductById(int id);
 
-    void addProduct(Product product);
+    void addProduct(ProductDTO productDTO);
 
-    void updateProduct(Product product);
+    void updateProduct(ProductDTO productDTO);
 
-    void deleteProduct(long id);
+    void updateProductPartially(ProductDTO productDTO);
+
+    void deleteProduct(int id);
 }

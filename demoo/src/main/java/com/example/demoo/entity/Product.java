@@ -22,7 +22,7 @@ public class Product {
     /** Indicates that the persistence provider must assign primary keys for the entity using a database
     identity column.This means they are auto-incremented.*/
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -33,10 +33,10 @@ public class Product {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "production_date", nullable = false)
+    @Column(name = "prod_date", nullable = false)
     private Date productionDate;
 
-    @Column(name = "expiration_date", nullable = false)
+    @Column(name = "exp_date", nullable = false)
     private Date expirationDate;
 
     @Column(name = "quantity", nullable = false)

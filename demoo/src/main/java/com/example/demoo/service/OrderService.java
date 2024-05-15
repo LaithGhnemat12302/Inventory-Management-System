@@ -1,71 +1,129 @@
 package com.example.demoo.service;
 
-import com.example.demoo.entity.Customer;
+import com.example.demoo.entity.*;
 import com.example.demoo.repository.CustomerRepository;
 import com.example.demoo.repository.OrderRepository;
-import com.example.demoo.entity.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 // __________________________________________________________________________________________________________
 @Service
 public class OrderService implements OrderServiceInterface{
     private final OrderRepository orderRepository;
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     @Autowired
-    public OrderService(OrderRepository orderRepository) {
+    public OrderService(OrderRepository orderRepository, CustomerRepository customerRepository) {
         this.orderRepository = orderRepository;
+        this.customerRepository = customerRepository;
     }
     // ______________________________________________________________________________________________________
     @Override
-    public List<Order> getAllOrders() {
-        return orderRepository.findAll();
+    public List<OrderDTO> getAllOrders() {
+        List<Orderr> orders = orderRepository.findAll();
+        List<OrderDTO> orderDTOs = new ArrayList<>();
+
+        for (Orderr order : orders) {
+            OrderDTO o = new OrderDTO();
+            o.setId(order.getId());
+            o.setOrder_date(order.getOrder_date());
+            o.setTotalCost(order.getTotalCost());
+            o.setOrder_status(order.getOrder_status());
+            o.setCustomer_id(order.getCustomer().getId());
+            orderDTOs.add(o);
+        }
+
+        return orderDTOs;
     }
     // ______________________________________________________________________________________________________
     @Override
-    public Order getOrderById(long id) {
-        Optional<Order> orders = orderRepository.findById(id);
-        if(orders.isPresent())
-            return orders.get();
-        else
-            throw new RuntimeException("Sorry, this order doesn't found");
+    public OrderDTO getOrderById(int id) {
+        List<Orderr> orders = orderRepository.findAll();
+
+        for(Orderr order : orders){
+            if(order.getId() == id) {
+                OrderDTO o = new OrderDTO();
+                o.setId(order.getId());
+                o.setOrder_date(order.getOrder_date());
+                o.setTotalCost(order.getTotalCost());
+                o.setOrder_status(order.getOrder_status());
+                o.setCustomer_id(order.getCustomer().getId());
+                return o;
+            }
+        }
+        throw new RuntimeException("Sorry, this order doesn't found");
     }
     // ______________________________________________________________________________________________________
     @Override
-    public void addOrder(Order newOrder) {
-        Optional<Order> orders = orderRepository.findById(newOrder.getId());
-        if (orders.isPresent())
-            throw new RuntimeException("Sorry, the order with this id already exists");
-        else
-            orderRepository.save(newOrder);
+    public void addOrder(OrderDTO orderDTO) {
+        orderDTO.setId(orderRepository.findTopByOrderByIdDesc().getId() + 1);
+
+        Orderr newOrder = new Orderr();
+        newOrder.setId(orderDTO.getId());
+        newOrder.setOrder_date(orderDTO.getOrder_date());
+        newOrder.setTotalCost(orderDTO.getTotalCost());
+        newOrder.setOrder_status(orderDTO.getOrder_status());
+
+        Customer customer = customerRepository.findById(orderDTO.getCustomer_id())
+                .orElseThrow(() -> new RuntimeException("The customer of this order isn't found"));
+
+        newOrder.setCustomer(customer);
+        orderRepository.save(newOrder);
     }
     // ______________________________________________________________________________________________________
     @Override
-    public void updateOrder(Order updatedOrder) {
-        Optional<Order> orders = orderRepository.findById(updatedOrder.getId());
+    public void updateOrder(OrderDTO orderDTO) {
+        Optional<Orderr> orders = orderRepository.findById(orderDTO.getId());
 
         if (orders.isPresent()) {
-            Order order = orders.get();
+            Orderr order = orders.get();
+            order.setOrder_date(orderDTO.getOrder_date());
+            order.setTotalCost(orderDTO.getTotalCost());
+            order.setOrder_status(orderDTO.getOrder_status());
 
-            order.setDate(updatedOrder.getDate());
-            order.setTotalCost(updatedOrder.getTotalCost());
-            order.setStatus(updatedOrder.getStatus());
-
-            Optional<Customer> customers = customerRepository.findById(updatedOrder.getCustomer().getId());
-            if (customers.isPresent())
+            Optional<Customer> customers = customerRepository.findById(orderDTO.getCustomer_id());
+            if (customers.isPresent()) {
                 order.setCustomer(customers.get());
+                orderRepository.save(order);
+            }
             else
-                throw new RuntimeException("Invalid customer id for this order");
-            orderRepository.save(order);
-        } else
+                throw new RuntimeException("Invalid customer for this order");
+        }
+        else
             throw new RuntimeException("Sorry, this order doesn't exist");
     }
     // ______________________________________________________________________________________________________
     @Override
-    public void deleteOrder(long id) {
+    public void updateOrderPartially(OrderDTO orderDTO) {
+        Optional<Orderr> orders = orderRepository.findById(orderDTO.getId());
+
+        if (orders.isPresent()) {
+            Orderr order = orders.get();
+            if(orderDTO.getOrder_date() != null)
+                order.setOrder_date(orderDTO.getOrder_date());
+            if(orderDTO.getTotalCost() != 0)
+                order.setTotalCost(orderDTO.getTotalCost());
+            if(orderDTO.getOrder_status() != null)
+                order.setOrder_status(orderDTO.getOrder_status());
+
+            if(orderDTO.getCustomer_id() != 0) {
+                Optional<Customer> customers = customerRepository.findById(orderDTO.getCustomer_id());
+                if (customers.isPresent())
+                    order.setCustomer(customers.get());
+                else
+                    throw new RuntimeException("Invalid customer for this order");
+            }
+            orderRepository.save(order);
+        }
+        else
+            throw new RuntimeException("Sorry, this order doesn't exist");
+    }
+    // ______________________________________________________________________________________________________
+    @Override
+    public void deleteOrder(int id) {
         orderRepository.deleteById(id);
     }
 }

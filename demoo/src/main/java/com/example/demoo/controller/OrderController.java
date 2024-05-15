@@ -1,6 +1,7 @@
 package com.example.demoo.controller;
 
-import com.example.demoo.entity.Order;
+import com.example.demoo.entity.OrderDTO;
+import com.example.demoo.entity.Orderr;
 import com.example.demoo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,30 +19,34 @@ public class OrderController {
     }
     // ______________________________________________________________________________________________________
     @GetMapping("/")
-    public List<Order> getAllOrders() {
+    public List<OrderDTO> getAllOrders() {
         return orderService.getAllOrders();
     }
     // ______________________________________________________________________________________________________
     @GetMapping("/{id}")
-    public Order getOrderById(@PathVariable long id) {
-        Order order = orderService.getOrderById(id);
-        if(order == null)
-            throw new RuntimeException("The order with the id " + id + " doesn't exist");
-        return order;
+    public OrderDTO getOrderById(@PathVariable int id) {
+        return orderService.getOrderById(id);
     }
     // ______________________________________________________________________________________________________
-    @PostMapping("/")
-    public void addOrder(@RequestBody Order order) {
-        orderService.addOrder(order);
+    @PostMapping("/addOrder")
+    public void addOrder(@RequestBody OrderDTO orderDTO) {
+        orderService.addOrder(orderDTO);
     }
     // ______________________________________________________________________________________________________
-    @PutMapping("/")
-    public void updateOrder(@RequestBody Order order) {
-        orderService.updateOrder(order);
+    @PutMapping("/updateOrder/{id}")
+    public void updateOrder(@PathVariable int id, @RequestBody OrderDTO orderDTO) {
+        orderDTO.setId(id);
+        orderService.updateOrder(orderDTO);
+    }
+    // ______________________________________________________________________________________________________
+    @PatchMapping("/updateOrder/{id}")
+    public void updateOrderPartially(@PathVariable int id, @RequestBody OrderDTO orderDTO) {
+        orderDTO.setId(id);
+        orderService.updateOrderPartially(orderDTO);
     }
     // ______________________________________________________________________________________________________
     @DeleteMapping("/{id}")
-    public void deleteOrder(@PathVariable long id) {
+    public void deleteOrder(@PathVariable int id) {
         orderService.deleteOrder(id);
     }
 }

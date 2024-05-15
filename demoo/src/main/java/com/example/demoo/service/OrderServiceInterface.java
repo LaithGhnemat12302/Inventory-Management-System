@@ -1,16 +1,19 @@
 package com.example.demoo.service;
 
-import com.example.demoo.entity.Order;
+import com.example.demoo.entity.OrderDTO;
+import com.example.demoo.entity.Orderr;
 import java.util.List;
 // __________________________________________________________________________________________________________
 public interface OrderServiceInterface {
-    List<Order> getAllOrders();
+    List<OrderDTO> getAllOrders();
 
-    Order getOrderById(long id);
+    OrderDTO getOrderById(int id);
 
-    void addOrder(Order order);
+    void addOrder(OrderDTO orderDTO);
 
-    void updateOrder(Order order);
+    void updateOrder(OrderDTO orderDTO);
 
-    void deleteOrder(long id);
+    void updateOrderPartially(OrderDTO orderDTO);
+
+    void deleteOrder(int id);
 }

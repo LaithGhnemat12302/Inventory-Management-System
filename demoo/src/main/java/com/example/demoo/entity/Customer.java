@@ -3,6 +3,7 @@ package com.example.demoo.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 // __________________________________________________________________________________________________________
 @Data
@@ -25,17 +26,21 @@ public class Customer {
     /** Indicates that the persistence provider must assign primary keys for the entity using a database
     identity column.This means they are auto-incremented.*/
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
+    @NotNull
     @Column(name = "name", nullable = false)
     private String name;
 
+    @NotNull
     @Column(name = "email", nullable = false)
     private String email;
 
+    @NotNull
     @Column(name = "address")
     private String address;
 
+    @NotNull
     @Column(name = "phone")
     private String phone;
 }
